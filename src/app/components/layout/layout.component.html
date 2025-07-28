@@ -1,0 +1,83 @@
+<mat-sidenav-container class="min-h-screen" style="background-color: #f9f9f9">
+  <!-- Sidebar -->
+  <mat-sidenav
+    mode="side"
+    opened
+    class="w-64 bg-gray-100"
+    style="width: 256px; background-color: #f0f0f0"
+  >
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="/admin/menu"
+        routerLinkActive="mat-selected"
+        style="padding: 8px 16px"
+      >
+        <mat-icon class="mr-2" style="color: #333">menu</mat-icon>
+        <span style="font-size: 16px; color: #333">Menu</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/admin/home"
+        routerLinkActive="mat-selected"
+        style="padding: 8px 16px"
+      >
+        <mat-icon class="mr-2" style="color: #333">home</mat-icon>
+        <span style="font-size: 16px; color: #333">Home</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/admin/user-search"
+        routerLinkActive="mat-selected"
+        style="padding: 8px 16px"
+      >
+        <mat-icon class="mr-2" style="color: #333">search</mat-icon>
+        <span style="font-size: 16px; color: #333">User Search</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content area -->
+  <mat-sidenav-content class="flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <mat-toolbar
+      color="primary"
+      class="px-4"
+      style="height: 64px; background-color: #1976d2; color: white"
+    >
+      <span class="text-xl font-semibold" style="margin-right: auto"
+        >Admin Dashboard</span
+      >
+      <div
+        class="flex items-center space-x-4"
+        style="margin-left: auto; position: relative"
+      >
+        <div class="relative">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="profileMenu"
+            style="color: white"
+          >
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #profileMenu="matMenu">
+            <div mat-menu-item style="display: flex; align-items: center">
+              <mat-icon>account_circle</mat-icon>
+              <span>Profile</span>
+            </div>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar>
+
+    <!-- Router content -->
+    <main
+      class="p-6 flex-1"
+      style="background-color: #ffffff; min-height: calc(100vh - 64px)"
+    >
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

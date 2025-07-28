@@ -28,11 +28,14 @@ export class AppService {
       );
   }
   getUserById(id: number): Observable<UserProfileViewModel> {
-  return this.getData().pipe(
-    map((users: UserProfileViewModel[]) =>
-      users.find(user => user.id === id)!
-    )
-  );
-}
-
+    return this.getData().pipe(
+      map((users: any[]) => {
+        const user = users.find((u) => u.id === id);
+        if (user) {
+          return { ...user, isLocked: false }; // add isLocked dynamically
+        }
+        throw new Error('User not found');
+      })
+    );
+  }
 }

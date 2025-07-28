@@ -1,0 +1,30 @@
+.mat-sidenav {
+  width: 256px !important;
+  background-color: #f0f0f0;
+}
+
+.mat-nav-list .mat-list-item {
+  padding: 8px 16px;
+  color: #333;
+}
+
+.mat-nav-list .mat-list-item.mat-selected {
+  background-color: #e0e0e0;
+  color: #1976d2;
+}
+
+.mat-toolbar {
+  height: 64px;
+  background-color: #1976d2;
+  color: white;
+}
+
+.mat-toolbar .mat-icon {
+  vertical-align: middle;
+}
+
+main {
+  background-color: #ffffff;
+  min-height: calc(100vh - 64px);
+  padding: 24px;
+}

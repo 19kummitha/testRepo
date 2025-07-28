@@ -1,10 +1,6 @@
 <div class="user-management-container">
   <div class="header-section">
     <h2>MFA ADMIN TOOL - Staging</h2>
-    <div class="button-group">
-      <button class="btn btn-primary" (click)="fetchData()">Fetch Data</button>
-      <button class="btn btn-secondary" (click)="clearData()">Clear Data</button>
-    </div>
   </div>
 
   <!-- Search Form Section -->
@@ -13,64 +9,73 @@
       <div class="form-row">
         <div class="form-group">
           <label for="applicationUserId">Application User ID</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             id="applicationUserId"
             [(ngModel)]="searchFilters.applicationUserId"
             (input)="onSearchInputChange()"
             placeholder="Enter Application User ID"
-            class="form-control">
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="appScope">App Scope</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             id="appScope"
             [(ngModel)]="searchFilters.appScope"
             (input)="onSearchInputChange()"
             placeholder="Enter App Scope"
-            class="form-control">
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="organization">Organization</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             id="organization"
             [(ngModel)]="searchFilters.organization"
             (input)="onSearchInputChange()"
             placeholder="Enter Organization"
-            class="form-control">
+            class="form-control"
+          />
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label for="emailAddress">Email Address</label>
-          <input 
-            type="email" 
+          <input
+            type="email"
             id="emailAddress"
             [(ngModel)]="searchFilters.emailAddress"
             (input)="onSearchInputChange()"
             placeholder="Enter Email Address"
-            class="form-control">
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="phoneNumber">Phone Number</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             id="phoneNumber"
             [(ngModel)]="searchFilters.phoneNumber"
             (input)="onSearchInputChange()"
             placeholder="Enter Phone Number"
-            class="form-control">
+            class="form-control"
+          />
         </div>
 
         <div class="form-group button-group-search">
-          <button class="btn btn-primary" (click)="applyFilters()">Search</button>
-          <button class="btn btn-outline" (click)="resetFilters()">Reset</button>
+          <button class="btn btn-primary" (click)="applyFilters()">
+            Search
+          </button>
+          <button class="btn btn-outline" (click)="resetFilters()">
+            Reset
+          </button>
         </div>
       </div>
     </div>
@@ -79,9 +84,12 @@
   <!-- Results Table Section -->
   <div class="results-section" *ngIf="filteredUsers.length > 0">
     <div class="results-header">
-      <span class="results-count">Showing {{ filteredUsers.length }} of {{ allUsers.length }} results</span>
+      <span class="results-count"
+        >Showing {{ filteredUsers.length }} of
+        {{ allUsers.length }} results</span
+      >
     </div>
-    
+
     <div class="table-container">
       <table class="data-table">
         <thead>
@@ -100,10 +108,11 @@
         <tbody>
           <tr *ngFor="let user of filteredUsers">
             <td>
-              <button 
-                class="btn btn-link" 
+              <button
+                class="btn btn-link"
                 (click)="viewDetails(user.id)"
-                title="View Details">
+                title="View Details"
+              >
                 View Details
               </button>
             </td>
@@ -122,7 +131,10 @@
   </div>
 
   <!-- No Results Message -->
-  <div class="no-results" *ngIf="allUsers.length > 0 && filteredUsers.length === 0">
+  <div
+    class="no-results"
+    *ngIf="allUsers.length > 0 && filteredUsers.length === 0"
+  >
     <p>No users found matching the search criteria.</p>
   </div>
 

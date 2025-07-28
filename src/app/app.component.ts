@@ -9,11 +9,10 @@ import { UserManagementComponent } from './components/user-management/user-manag
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule,UserManagementComponent],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-
   title = 'Angular Boilerplate';
 }
