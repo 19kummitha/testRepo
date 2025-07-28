@@ -1,0 +1,29 @@
+<div class="user-details-container">
+  <h2>User Details for ID: {{ userId }}</h2>
+
+  <div class="details-box">
+    <p><strong>App User ID:</strong> {{ userId }}</p>
+    <p><strong>Company:</strong> ABC Corp</p>
+    <p><strong>Email:</strong> user@example.com</p>
+    <p><strong>Phone:</strong> 1234567890</p>
+    <p><strong>Address:</strong> Sample Address, Zip, State</p>
+    <p><strong>Country:</strong> India</p>
+    <p><strong>Status:</strong> {{ isLocked ? 'LOCKED' : 'ACTIVE' }}</p>
+  </div>
+
+  <div class="button-group">
+    <button 
+      *ngIf="!isLocked" 
+      class="btn btn-danger" 
+      (click)="lockUser()">
+      Lock Profile
+    </button>
+
+    <button 
+      *ngIf="isLocked" 
+      class="btn btn-success" 
+      (click)="unlockUser()">
+      Unlock Profile
+    </button>
+  </div>
+</div>

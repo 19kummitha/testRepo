@@ -1,0 +1,133 @@
+<div class="user-management-container">
+  <div class="header-section">
+    <h2>MFA ADMIN TOOL - Staging</h2>
+    <div class="button-group">
+      <button class="btn btn-primary" (click)="fetchData()">Fetch Data</button>
+      <button class="btn btn-secondary" (click)="clearData()">Clear Data</button>
+    </div>
+  </div>
+
+  <!-- Search Form Section -->
+  <div class="search-section">
+    <div class="search-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="applicationUserId">Application User ID</label>
+          <input 
+            type="text" 
+            id="applicationUserId"
+            [(ngModel)]="searchFilters.applicationUserId"
+            (input)="onSearchInputChange()"
+            placeholder="Enter Application User ID"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="appScope">App Scope</label>
+          <input 
+            type="text" 
+            id="appScope"
+            [(ngModel)]="searchFilters.appScope"
+            (input)="onSearchInputChange()"
+            placeholder="Enter App Scope"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="organization">Organization</label>
+          <input 
+            type="text" 
+            id="organization"
+            [(ngModel)]="searchFilters.organization"
+            (input)="onSearchInputChange()"
+            placeholder="Enter Organization"
+            class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="emailAddress">Email Address</label>
+          <input 
+            type="email" 
+            id="emailAddress"
+            [(ngModel)]="searchFilters.emailAddress"
+            (input)="onSearchInputChange()"
+            placeholder="Enter Email Address"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input 
+            type="text" 
+            id="phoneNumber"
+            [(ngModel)]="searchFilters.phoneNumber"
+            (input)="onSearchInputChange()"
+            placeholder="Enter Phone Number"
+            class="form-control">
+        </div>
+
+        <div class="form-group button-group-search">
+          <button class="btn btn-primary" (click)="applyFilters()">Search</button>
+          <button class="btn btn-outline" (click)="resetFilters()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Table Section -->
+  <div class="results-section" *ngIf="filteredUsers.length > 0">
+    <div class="results-header">
+      <span class="results-count">Showing {{ filteredUsers.length }} of {{ allUsers.length }} results</span>
+    </div>
+    
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Application User ID</th>
+            <th>App Scope</th>
+            <th>Organization</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Username</th>
+            <th>Address</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of filteredUsers">
+            <td>
+              <button 
+                class="btn btn-link" 
+                (click)="viewDetails(user.id)"
+                title="View Details">
+                View Details
+              </button>
+            </td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.company }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.address }}, {{ user.zip }}, {{ user.state }}</td>
+            <td>{{ user.country }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- No Results Message -->
+  <div class="no-results" *ngIf="allUsers.length > 0 && filteredUsers.length === 0">
+    <p>No users found matching the search criteria.</p>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="allUsers.length === 0">
+    <p>No data available. Click "Fetch Data" to load user information.</p>
+  </div>
+</div>

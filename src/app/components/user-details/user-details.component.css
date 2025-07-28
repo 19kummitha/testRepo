@@ -1,0 +1,16 @@
+.user-details-container {
+  padding: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.details-box {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.button-group button {
+  margin-right: 1rem;
+}
