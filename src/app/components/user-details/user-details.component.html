@@ -14,18 +14,21 @@
 </div>
 
 <div *ngIf="user" style="margin-top: 16px">
+  <!-- Show Lock button only if status is ACTIVE -->
   <button
+    *ngIf="!isLocked"
     mat-button
     (click)="lockUser()"
-    [disabled]="isLocked"
     style="margin-right: 8px; background-color: #d32f2f; color: white"
   >
     Lock Profile
   </button>
+
+  <!-- Show Unlock button only if status is LOCKED -->
   <button
+    *ngIf="isLocked"
     mat-button
     (click)="unlockUser()"
-    [disabled]="!isLocked"
     style="background-color: #2e7d32; color: white"
   >
     Unlock Profile

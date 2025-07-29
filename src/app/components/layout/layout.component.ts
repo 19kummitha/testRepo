@@ -4,7 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -25,8 +25,11 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./layout.component.css'],
 })
 export class LayoutComponent {
+  constructor(private router: Router) {} // ✅ Inject Router
+
   logout() {
-    // Placeholder for logout logic to be implemented later
+    localStorage.removeItem('token'); // ✅ Clear token
+    this.router.navigate(['/login']); // ✅ Navigate to login
     console.log('Logout clicked');
   }
 }
