@@ -1,43 +1,58 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AppService } from 'src/app/services/app.service';
-import { UserProfileViewModel } from 'src/app/view-models/app.view-model';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-user-details',
-  imports: [FormsModule, CommonModule],
+  standalone: true,
+  imports: [MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule],
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css'],
+  styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
   userId: number | null = null;
-  user: UserProfileViewModel | null = null;
   isLocked: boolean = false;
 
-  constructor(private route: ActivatedRoute, private appService: AppService) {}
+  displayedColumns: string[] = ['label', 'countryCode', 'areaCode', 'phoneNumber', 'action'];
+
+  user: any = {
+    appUserId: 'IMG_UAT_5401242',
+    hashcode: '0316a47...2256ff2ecc7be',
+    organization: 'mercer',
+    appScope: 'oviewukv4_stg',
+    locale: 'en-US',
+    phoneDetails: [
+      { label: 'LN Mob', countryCode: '44', areaCode: '', phoneNumber: '88557' },
+      { label: 'LN work', countryCode: '44', areaCode: '', phoneNumber: '22197' }
+    ]
+  };
+
+  defaultPhones = [
+    { label: 'LN Mob', countryCode: '44', areaCode: '', phoneNumber: '88557' },
+    { label: 'LN Work', countryCode: '44', areaCode: '', phoneNumber: '22197' }
+  ];
+
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.userId = Number(this.route.snapshot.paramMap.get('id'));
-
-    if (this.userId) {
-      this.appService.getUserById(this.userId).subscribe((user) => {
-        this.user = user;
-        this.isLocked = false; // default to unlocked
-      });
-    }
   }
 
   lockUser() {
     this.isLocked = true;
     alert('User locked (mock)');
-    // In a real app, call an API here to update the lock status
   }
 
   unlockUser() {
     this.isLocked = false;
     alert('User unlocked (mock)');
-    // In a real app, call an API here to update the lock status
   }
 }
