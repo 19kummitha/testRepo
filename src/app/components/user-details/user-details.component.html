@@ -1,103 +1,124 @@
 <mat-card class="mat-elevation-z4 p-4">
   <h2>Application User ID</h2>
-  <p><strong>{{ user?.appUserId || 'IMG_UAT_5401242' }}</strong></p>
+  <p>
+    <strong>{{ user?.appUserId || "IMG_UAT_5401242" }}</strong>
+  </p>
+  <div *ngIf="user" style="margin-top: 16px">
+    <!-- Show Lock button only if status is ACTIVE -->
+    <button
+      *ngIf="!isLocked"
+      mat-button
+      (click)="lockUser()"
+      style="margin-right: 8px; background-color: #d32f2f; color: white"
+    >
+      Lock Profile
+    </button>
 
-<<<<<<< HEAD
-<div *ngIf="user" style="margin-top: 16px">
-  <!-- Show Lock button only if status is ACTIVE -->
-  <button
-    *ngIf="!isLocked"
-    mat-button
-    (click)="lockUser()"
-    style="margin-right: 8px; background-color: #d32f2f; color: white"
-  >
-    Lock Profile
-  </button>
-
-  <!-- Show Unlock button only if status is LOCKED -->
-  <button
-    *ngIf="isLocked"
-    mat-button
-    (click)="unlockUser()"
-    style="background-color: #2e7d32; color: white"
-  >
-    Unlock Profile
-  </button>
-</div>
-=======
+    <!-- Show Unlock button only if status is LOCKED -->
+    <button
+      *ngIf="isLocked"
+      mat-button
+      (click)="unlockUser()"
+      style="background-color: #2e7d32; color: white"
+    >
+      Unlock Profile
+    </button>
+  </div>
   <mat-form-field appearance="fill" class="w-100 my-2">
     <mat-label>Hashcode</mat-label>
-    <input matInput [value]="user?.hashcode || '0316a47...2256ff2ecc7be'" disabled>
+    <input
+      matInput
+      [value]="user?.hashcode || '0316a47...2256ff2ecc7be'"
+      disabled
+    />
   </mat-form-field>
 
   <div class="d-flex flex-wrap gap-4">
     <mat-form-field appearance="fill" class="flex-fill">
       <mat-label>Organization</mat-label>
-      <input matInput [value]="user?.organization || 'mercer'" disabled>
+      <input matInput [value]="user?.organization || 'mercer'" disabled />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="flex-fill">
       <mat-label>App Scope</mat-label>
-      <input matInput [value]="user?.appScope || 'oviewukv4_stg'" disabled>
+      <input matInput [value]="user?.appScope || 'oviewukv4_stg'" disabled />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="flex-fill">
       <mat-label>Locale</mat-label>
-      <input matInput [value]="user?.locale || 'en-US'" disabled>
+      <input matInput [value]="user?.locale || 'en-US'" disabled />
     </mat-form-field>
   </div>
 
   <h3 class="mt-4">Phone Details</h3>
 
-  <table mat-table [dataSource]="user?.phoneDetails || defaultPhones" class="mat-elevation-z2 w-100">
-
+  <table
+    mat-table
+    [dataSource]="user?.phoneDetails || defaultPhones"
+    class="mat-elevation-z2 w-100"
+  >
     <!-- Label Column -->
     <ng-container matColumnDef="label">
-      <th mat-header-cell *matHeaderCellDef> Label </th>
-      <td mat-cell *matCellDef="let phone"> {{ phone.label }} </td>
+      <th mat-header-cell *matHeaderCellDef>Label</th>
+      <td mat-cell *matCellDef="let phone">{{ phone.label }}</td>
     </ng-container>
 
     <!-- Country Code -->
     <ng-container matColumnDef="countryCode">
-      <th mat-header-cell *matHeaderCellDef> Country Code </th>
-      <td mat-cell *matCellDef="let phone"> {{ phone.countryCode }} </td>
+      <th mat-header-cell *matHeaderCellDef>Country Code</th>
+      <td mat-cell *matCellDef="let phone">{{ phone.countryCode }}</td>
     </ng-container>
 
     <!-- Area Code -->
     <ng-container matColumnDef="areaCode">
-      <th mat-header-cell *matHeaderCellDef> Area Code </th>
-      <td mat-cell *matCellDef="let phone"> {{ phone.areaCode || '-' }} </td>
+      <th mat-header-cell *matHeaderCellDef>Area Code</th>
+      <td mat-cell *matCellDef="let phone">{{ phone.areaCode || "-" }}</td>
     </ng-container>
 
     <!-- Phone Number -->
     <ng-container matColumnDef="phoneNumber">
-      <th mat-header-cell *matHeaderCellDef> Phone Number </th>
-      <td mat-cell *matCellDef="let phone"> *****{{ phone.phoneNumber.slice(-4) }} </td>
+      <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+      <td mat-cell *matCellDef="let phone">
+        *****{{ phone.phoneNumber.slice(-4) }}
+      </td>
     </ng-container>
 
     <!-- Action -->
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let phone">
         <button mat-button color="primary">Test Contact</button>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
   <h3 class="mt-4">User Status</h3>
   <mat-form-field appearance="fill" class="w-100">
     <mat-label>Status</mat-label>
-    <input matInput [value]="isLocked ? 'LOCKED' : 'ACTIVE'" disabled>
+    <input matInput [value]="isLocked ? 'LOCKED' : 'ACTIVE'" disabled />
   </mat-form-field>
 
   <div class="d-flex gap-2 mt-3 flex-wrap">
-    <button mat-raised-button color="warn" *ngIf="!isLocked" (click)="lockUser()">Lock</button>
-    <button mat-raised-button color="primary" *ngIf="isLocked" (click)="unlockUser()">Unlock</button>
+    <button
+      mat-raised-button
+      color="warn"
+      *ngIf="!isLocked"
+      (click)="lockUser()"
+    >
+      Lock
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isLocked"
+      (click)="unlockUser()"
+    >
+      Unlock
+    </button>
     <button mat-stroked-button color="accent">Back</button>
     <button mat-stroked-button color="warn">Unenroll</button>
   </div>
 </mat-card>
->>>>>>> 364c6108bdaf4e533d47a55b0fca0197ebc4711c
