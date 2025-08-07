@@ -5,23 +5,33 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [MatCardModule,
+  imports: [
+    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule],
+    MatTableModule,
+    CommonModule,
+  ],
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
   userId: number | null = null;
   isLocked: boolean = false;
 
-  displayedColumns: string[] = ['label', 'countryCode', 'areaCode', 'phoneNumber', 'action'];
+  displayedColumns: string[] = [
+    'label',
+    'countryCode',
+    'areaCode',
+    'phoneNumber',
+    'action',
+  ];
 
   user: any = {
     appUserId: 'IMG_UAT_5401242',
@@ -30,14 +40,24 @@ export class UserDetailsComponent implements OnInit {
     appScope: 'oviewukv4_stg',
     locale: 'en-US',
     phoneDetails: [
-      { label: 'LN Mob', countryCode: '44', areaCode: '', phoneNumber: '88557' },
-      { label: 'LN work', countryCode: '44', areaCode: '', phoneNumber: '22197' }
-    ]
+      {
+        label: 'LN Mob',
+        countryCode: '44',
+        areaCode: '',
+        phoneNumber: '88557',
+      },
+      {
+        label: 'LN work',
+        countryCode: '44',
+        areaCode: '',
+        phoneNumber: '22197',
+      },
+    ],
   };
 
   defaultPhones = [
     { label: 'LN Mob', countryCode: '44', areaCode: '', phoneNumber: '88557' },
-    { label: 'LN Work', countryCode: '44', areaCode: '', phoneNumber: '22197' }
+    { label: 'LN Work', countryCode: '44', areaCode: '', phoneNumber: '22197' },
   ];
 
   constructor(private route: ActivatedRoute) {}

@@ -1,4 +1,14 @@
-<div>
-  <h2>Welcome to Admin Dashboard</h2>
-  <p>This is the home page for admin.</p>
+<div style="padding: 20px">
+  <h2>Test GET API</h2>
+
+  <button (click)="callApi()">Call API</button>
+
+  <div *ngIf="result" style="margin-top: 20px; color: green">
+    <strong>API Response:</strong>
+    <pre>{{ result }}</pre>
+  </div>
+
+  <div *ngIf="error" style="margin-top: 20px; color: red">
+    <strong>Error:</strong> {{ error }}
+  </div>
 </div>
